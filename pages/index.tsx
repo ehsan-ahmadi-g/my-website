@@ -1,85 +1,169 @@
+import React from 'react'
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
+
+import { tw } from 'twind'
+
+import MyImage from '../assets/images/avatar.png'
+
+import Resume from '../resume'
+
+const Typer = ({ TEXTArr }: { TEXTArr: Array<string> }) => {
+  const [typerState, setTyperState] = React.useState({
+    text: '',
+    isDeleting: false,
+    loop: 0,
+  })
+
+  const handlerTypingEffect = React.useCallback(() => {
+    setTyperState((prevState) => {
+      if (prevState.isDeleting) {
+        const isDeleting =
+          prevState.isDeleting && prevState.text.length - 1 !== 0
+
+        return {
+          loop: isDeleting
+            ? prevState.loop
+            : (prevState.loop + 1) % TEXTArr.length,
+          text: TEXTArr[prevState.loop].substring(0, prevState.text.length - 1),
+          isDeleting,
+        }
+      } else {
+        return {
+          loop: prevState.loop,
+          text: TEXTArr[prevState.loop].substring(0, prevState.text.length + 1),
+          isDeleting:
+            prevState.text.length + 1 === TEXTArr[prevState.loop].length,
+        }
+      }
+    })
+
+    setTimeout(handlerTypingEffect, 250)
+  }, [TEXTArr])
+
+  React.useEffect(handlerTypingEffect, [handlerTypingEffect])
+
+  return (
+    <h1 className="flex items-center justify-center text-center my-2 text-4xl lg:text-8xl font-bold text-gray-200 h-[122px]">
+      {typerState.text}
+    </h1>
+  )
+}
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>{Resume.name} Personal website</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
+      <div className="flex w-full flex-col xl:flex-row items-center justify-between py-3 px-6 lg:px-20">
+        <div className="inline-flex flex-col justify-center items-center order-2 xl:order-1 mt-5 xl:mt-0">
+          <Typer TEXTArr={['Developer', 'Programmer', 'Wizard']} />
+        </div>
+
+        <div className="inline-flex order-1 xl:order-2">
+          <Image
+            className="h-full w-full rounded-full"
+            src={MyImage}
+            alt="me"
+          />
+        </div>
+      </div>
+
+      <main className="flex w-full flex-col px-6 lg:px-20">
+        <div id="about" className="my-4 lg:my-12 flex flex-col">
+          <h1 className="text-4xl font-bold uppercase text-white">
+            Ehsan Ahmadi
+          </h1>
+          <h3 className="mt-2 text-2xl font-semibold text-gray-300">
+            Front-end Developer
+          </h3>
+
+          <p className="mt-3 text-base text-gray-400">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
+            maxime nisi facere ad illo suscipit, molestiae sint ex nam tempora
+            quaerat voluptatum. Laboriosam dolore suscipit consequatur vero
+            doloribus voluptate ducimus ipsam labore? Ipsam aspernatur
+            reprehenderit, saepe inventore eius molestias fuga dolores
+            architecto rerum et tempore beatae doloribus quod debitis nulla?
+          </p>
+
+          <p className="mt-3 text-base text-gray-400">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
+            maxime nisi facere ad illo suscipit, molestiae sint ex nam tempora
+            quaerat voluptatum. Laboriosam dolore suscipit consequatur vero
+            doloribus voluptate ducimus ipsam labore? Ipsam aspernatur
+            reprehenderit, saepe inventore eius molestias fuga dolores
+            architecto rerum et tempore beatae doloribus quod debitis nulla?
+          </p>
+
+          <p className="mt-3 text-base text-gray-400">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
+            maxime nisi facere ad illo suscipit, molestiae sint ex nam tempora
+            quaerat voluptatum. Laboriosam dolore suscipit consequatur vero
+            doloribus voluptate ducimus ipsam labore? Ipsam aspernatur
+            reprehenderit, saepe inventore eius molestias fuga dolores
+            architecto rerum et tempore beatae doloribus quod debitis nulla?
+          </p>
+        </div>
+
+        <h1
+          id="projects"
+          className="my-4 lg:my-12 inline-flex flex-col sm:flex-row items-center justify-center text-center text-4xl lg:text-8xl font-bold text-gray-200"
+        >
+          Featured
+          <span className="ml-3 text-blue-600">Projects</span>
         </h1>
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
+        <div className="my-4 flex flex-col">
+          {[
+            { ...Resume.projects.mealfit, href: 'mealfit' },
+            { ...Resume.projects.betabattle, href: 'betabattle' },
+            { ...Resume.projects.optimal360, href: 'optimal360' },
+            { ...Resume.projects.specsReady, href: 'specsReady' },
+          ].map((project) => (
+            <div
+              key={project.id}
+              className="flex flex-col py-6 relative border-l-8 border-l-blue-600"
+            >
+              <div
+                className={tw(
+                  'w-8 h-8 rounded-full',
+                  'absolute -translate-x-1/2 -translate-y-1/2 top-1/2 -left-[4px] bg-blue-600'
+                )}
+              />
 
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
+              <div className="flex flex-row items-center justify-between xl:w-2/3">
+                <div className="flex flex-col">
+                  <h2 className="text-2xl pl-8 font-semibold text-gray-100">
+                    {project.name}
+                  </h2>
 
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+                  <p className="text-base pl-8 font-light text-gray-200">
+                    {project.description}
+                  </p>
+                </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+                <Link
+                  passHref
+                  key={project.id}
+                  href={`/projects/${project.href}`}
+                >
+                  <button className="px-4 py-2 text-white border-2 border-blue-600 rounded">
+                    See Details
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
-    </div>
+    </>
   )
 }
 
