@@ -1,9 +1,8 @@
 export default {
   name: 'Ehsan Ahmadi',
   socials: {
-    instagram: 'instagram',
-    twitter: 'twitter',
-    linkedin: 'linkedin',
+    twitter: 'https://twitter.com/ehsane_ahmadi',
+    linkedin: 'https://www.linkedin.com/in/ehsan--ahmadi/',
   },
   projects: {
     mealfit: {
