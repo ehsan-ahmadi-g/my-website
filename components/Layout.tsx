@@ -23,7 +23,7 @@ const Layout: React.FC = ({ children }) => {
             {[
               { href: '#about', text: 'About' },
               { href: '/#projects', text: 'Projects' },
-              { href: '#resume', text: 'Resume' },
+              // { href: '#resume', text: 'Resume', download:true },
             ].map((el) => (
               <li key={el.href}>
                 <Link passHref href={el.href}>
@@ -33,6 +33,17 @@ const Layout: React.FC = ({ children }) => {
                 </Link>
               </li>
             ))}
+
+            <li>
+              <a
+                href="/Ehsan.Ahmadi.CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-bold cursor-pointer"
+              >
+                Resume
+              </a>
+            </li>
           </ul>
 
           <div className="flex flex-row space-x-4 mt-2 lg:mt-0">
