@@ -3,6 +3,7 @@ export default {
   socials: {
     twitter: 'https://twitter.com/ehsane_ahmadi',
     linkedin: 'https://www.linkedin.com/in/ehsan--ahmadi/',
+    github: 'https://github.com/ehsan-ahmadi-g',
   },
   projects: {
     mealfit: {
