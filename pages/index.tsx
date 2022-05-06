@@ -85,30 +85,18 @@ const Home: NextPage = () => {
           </h3>
 
           <p className="mt-3 text-base text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
-            maxime nisi facere ad illo suscipit, molestiae sint ex nam tempora
-            quaerat voluptatum. Laboriosam dolore suscipit consequatur vero
-            doloribus voluptate ducimus ipsam labore? Ipsam aspernatur
-            reprehenderit, saepe inventore eius molestias fuga dolores
-            architecto rerum et tempore beatae doloribus quod debitis nulla?
+            I am a React.js & React-native Developer
           </p>
 
-          <p className="mt-3 text-base text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
-            maxime nisi facere ad illo suscipit, molestiae sint ex nam tempora
-            quaerat voluptatum. Laboriosam dolore suscipit consequatur vero
-            doloribus voluptate ducimus ipsam labore? Ipsam aspernatur
-            reprehenderit, saepe inventore eius molestias fuga dolores
-            architecto rerum et tempore beatae doloribus quod debitis nulla?
+          <p className="mt-1 text-base text-gray-400">
+            I am very passionate about my work and delivering the best code and
+            product imaginable , I am very keen on learning new technologies and
+            frameworks and even new languages
           </p>
 
-          <p className="mt-3 text-base text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
-            maxime nisi facere ad illo suscipit, molestiae sint ex nam tempora
-            quaerat voluptatum. Laboriosam dolore suscipit consequatur vero
-            doloribus voluptate ducimus ipsam labore? Ipsam aspernatur
-            reprehenderit, saepe inventore eius molestias fuga dolores
-            architecto rerum et tempore beatae doloribus quod debitis nulla?
+          <p className="mt-1 text-base text-gray-400">
+            I am very keen on learning new technologies and frameworks and even
+            new languages
           </p>
         </div>
 
